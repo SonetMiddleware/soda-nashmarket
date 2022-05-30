@@ -16,7 +16,7 @@ const getItemPage = async (params: { token: NFT }) => {
   }
   return `http://nash.market/detail/-1`
 }
-const getHost = async (params: { chainId?: string }) => {
+const getHost = async (params: { chainId?: number }) => {
   return 'http://nash.market/'
 }
 
