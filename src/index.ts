@@ -10,12 +10,14 @@ const getOrderByTokenId = async (
   return o ? { id: o.order_id } : null
 }
 const getItemPage = async (params: { token: NFT }) => {
-  console.log(params)
   const o = await getOrderByTokenId(params.token)
   if (o && o.id) {
     return `https://nash.market/detail/${o.id}`
   }
   return `http://nash.market/detail/-1`
+}
+const getHost = async (params: { chainId?: string }) => {
+  return 'http://nash.market/'
 }
 
 const sell = async () => {}
@@ -28,7 +30,8 @@ const init = () => {
   registerMarketPlace({
     name: 'nash',
     meta: {
-      getItemPage
+      getItemPage,
+      getHost
     }
   })
 }
