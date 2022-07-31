@@ -1,10 +1,11 @@
-import { httpRequest } from '@soda/soda-util'
+import { API_HOST, getChainName, httpRequest } from '@soda/soda-util'
 
 const BACKEND_HOST = process.env.API_HOST
 
 export const getOrderByTokenId = async (tokenId: string, status?: number) => {
-  const url = `${BACKEND_HOST}/orders`
-  const params = { token_id: tokenId, status }
+  const url = `${API_HOST}/orders`
+  const chain_name = await getChainName()
+  const params = { token_id: tokenId, status, chain_name }
   try {
     const res = await httpRequest({ url, params })
     if (res.error) {
